@@ -1,9 +1,14 @@
 server:
     port: 8081
 
+feign:
+    autoconfiguration:
+        jackson:
+            enabled: true
+
 spring:
-    application:FeignClient
-        name: community-service
+    application: FeignClient
+#        name: client-demo
     profiles:
         active: local
     thymeleaf:

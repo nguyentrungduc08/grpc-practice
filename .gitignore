@@ -155,7 +155,8 @@ buildNumber.properties
 # older plugin install locations
 /plugins
 /web-app/plugins
-
+grpc-common/src/main/java/com/ducnt/grpc/
 # "temporary" build files
 /target
+
 
