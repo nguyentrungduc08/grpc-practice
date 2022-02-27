@@ -1,0 +1,13 @@
+server:
+    port: 8081
+
+spring:
+    application:FeignClient
+        name: community-service
+    profiles:
+        active: local
+    thymeleaf:
+        mode: HTML
+    jmx:
+        enabled: false
+

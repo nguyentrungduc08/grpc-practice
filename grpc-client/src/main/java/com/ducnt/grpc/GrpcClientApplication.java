@@ -1,4 +1,4 @@
-package com.ducnt.grpcclient;
+package com.ducnt.grpc.client;
 
 import com.ducnt.grcp.DemoRequest;
 import com.ducnt.grcp.DemoResponse;
