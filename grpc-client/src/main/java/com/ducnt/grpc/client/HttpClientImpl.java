@@ -14,7 +14,9 @@ public class HttpClientImpl{
     private IHttpFeignClient feignClient;
 
     public Integer calc_function(int val) {
-        _Logger.info(Thread.currentThread().getName() + " http caclFunc: " + val);
-        return feignClient.rest_calc(val);
+        _Logger.info("Http client start request " + val);
+        int res = feignClient.rest_calc(val);
+        _Logger.info(Thread.currentThread().getName() + " http caclFunc val " + val + " res= " + res);
+        return res;
     }
 }

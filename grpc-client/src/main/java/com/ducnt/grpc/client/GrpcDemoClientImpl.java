@@ -31,15 +31,12 @@ public class GrpcDemoClientImpl implements IGrpcDemoClient {
 
     @Override
     public int calcFunc(int val) {
-//        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9090).usePlaintext().build();
-
+        _Logger.info("Grpc client start request " + val);
         DemoServiceGrpc.DemoServiceBlockingStub stub = DemoServiceGrpc.newBlockingStub(channel);
         CalcResponse res = stub
                 .calcFunc(CalcRequest.newBuilder().setVal(val).build());
-//        channel.shutdown();
 
-
-        _Logger.info(Thread.currentThread().getName() + "Grcp calcFunc: " +res.getVal());
+        _Logger.info(Thread.currentThread().getName() + " grcp calcFunc val= " + val + ", res= " +res.getVal());
         return res.getVal();
     }
 }

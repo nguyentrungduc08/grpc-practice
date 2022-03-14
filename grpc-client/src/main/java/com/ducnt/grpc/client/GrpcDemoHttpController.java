@@ -1,11 +1,18 @@
 package com.ducnt.grpc.client;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @RestController
 public class GrpcDemoHttpController {
+    private static final Logger _Logger = LoggerFactory.getLogger(GrpcDemoHttpController.class);
+    private static AtomicInteger aValGrpc = new AtomicInteger(0);
+    private static AtomicInteger aValHttp = new AtomicInteger(0);
 
     @Autowired
     private GrpcDemoClientImpl grpcClient;
@@ -37,9 +44,12 @@ public class GrpcDemoHttpController {
 
     @GetMapping("/grpc")
     public String doGrcp() {
+        _Logger.info("GRPC_________________");
         StringBuilder sb = new StringBuilder();
         long startTime = System.currentTimeMillis();
-        int res = grpcClient.calcFunc(123);
+        int val = aValGrpc.incrementAndGet();
+        _Logger.info("Grpc controler receive request val=" + val);
+        int res = grpcClient.calcFunc(val);
         long end = System.currentTimeMillis();
         long endTime = System.currentTimeMillis();
 
@@ -49,9 +59,12 @@ public class GrpcDemoHttpController {
 
     @GetMapping("/http")
     public String doHttp() {
+        _Logger.info("HTTP_________________");
         StringBuilder sb = new StringBuilder();
         long startTime = System.currentTimeMillis();
-        int res = httpClient.calc_function(345);
+        int val = aValHttp.incrementAndGet();
+        _Logger.info("Http controler receive request val=" + val);
+        int res = httpClient.calc_function(val);
         long end = System.currentTimeMillis();
         long endTime = System.currentTimeMillis();
         sb.append(String.format("TotalTime : %d", endTime - startTime));
